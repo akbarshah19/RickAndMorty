@@ -9,6 +9,7 @@ import UIKit
 
 protocol RMCharacterListViewControllerVMDelegate: AnyObject {
     func didLoadInitialChars()
+    func didSelectCharacter(_ character: RMCharacter)
 }
 
 final class RMCharacterListViewControllerVM: NSObject {
@@ -28,11 +29,16 @@ final class RMCharacterListViewControllerVM: NSObject {
     
     private var cellVMs: [RMCharacterCCellVM] = []
     
+    private var apiInfo: RMGetAllCharactersResponse.Info? = nil
+    
+    
+    ///fetch initial set of characters
     public func fetchCharacters() {
         RMService.shared.execute(.listCharacterReuquest, expecting: RMGetAllCharactersResponse.self) { [weak self] result in
             switch result {
             case .success(let responseModel):
                 let results = responseModel.results
+                self?.apiInfo  = responseModel.info
                 self?.chars = results
                 DispatchQueue.main.async {
                     self?.delegate?.didLoadInitialChars()
@@ -41,6 +47,15 @@ final class RMCharacterListViewControllerVM: NSObject {
                 print(String(describing: error))
             }
         }
+    }
+    
+    ///paginate if needed
+    public func fetchAdditionalCharacters() {
+        
+    }
+    
+    public var shouldShowLoadIndicator: Bool {
+        return apiInfo?.next != nil
     }
 }
 
@@ -64,5 +79,37 @@ extension RMCharacterListViewControllerVM: UICollectionViewDataSource, UICollect
         let width = (bounds.width-30)/2
         return CGSize(width: width,
                       height: width*1.5)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let character = chars[indexPath.row]
+        delegate?.didSelectCharacter(character)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionFooter,
+              let footer = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: RMFooterLoadingCollectionReusableView.id,
+            for: indexPath) as? RMFooterLoadingCollectionReusableView else {
+            fatalError("Unsupported")
+        }
+        footer.startAnimating()
+        return footer
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        guard shouldShowLoadIndicator else {
+            return .zero
+        }
+        return CGSize(width: collectionView.frame.width, height: 100)
+    }
+}
+
+extension RMCharacterListViewControllerVM: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard shouldShowLoadIndicator else { return }
+        
     }
 }
