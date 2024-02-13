@@ -12,9 +12,11 @@ protocol RMCharacterListViewControllerVMDelegate: AnyObject {
     func didSelectCharacter(_ character: RMCharacter)
 }
 
-final class RMCharacterListViewControllerVM: NSObject {
+final class RMCharacterListViewVM: NSObject {
     
     public weak var delegate: RMCharacterListViewControllerVMDelegate?
+    
+    private var isLoadingMore = false
     
     private var chars: [RMCharacter] = [] {
         didSet {
@@ -51,6 +53,7 @@ final class RMCharacterListViewControllerVM: NSObject {
     
     ///paginate if needed
     public func fetchAdditionalCharacters() {
+        isLoadingMore = true
         
     }
     
@@ -59,7 +62,7 @@ final class RMCharacterListViewControllerVM: NSObject {
     }
 }
 
-extension RMCharacterListViewControllerVM: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension RMCharacterListViewVM: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellVMs.count
     }
@@ -107,9 +110,15 @@ extension RMCharacterListViewControllerVM: UICollectionViewDataSource, UICollect
     }
 }
 
-extension RMCharacterListViewControllerVM: UIScrollViewDelegate {
+extension RMCharacterListViewVM: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard shouldShowLoadIndicator else { return }
+        guard shouldShowLoadIndicator, !isLoadingMore else { return }
+        let offset = scrollView.contentOffset.y
+        let totalContentHeight = scrollView.contentSize.height
+        let totalScrollViewFixedHeight = scrollView.frame.size.height
         
+        if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+            fetchAdditionalCharacters()
+        }
     }
 }
