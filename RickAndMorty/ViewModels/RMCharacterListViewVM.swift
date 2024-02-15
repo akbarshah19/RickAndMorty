@@ -21,11 +21,15 @@ final class RMCharacterListViewVM: NSObject {
     
     private var chars: [RMCharacter] = [] {
         didSet {
-            for char in chars where !cellVMs.contains(where: {$0.charName == char.name}) {
-                let vm = RMCharacterCCellVM(charName: char.name,
-                                            charStatus: char.status,
-                                            charImageUrl: URL(string: char.image))
-                cellVMs.append(vm)
+            for char in chars {
+                let vm = RMCharacterCCellVM(
+                    charName: char.name,
+                    charStatus: char.status,
+                    charImageUrl: URL(string: char.image)
+                )
+                if !cellVMs.contains(vm) {
+                    cellVMs.append(vm)
+                }
             }
         }
     }

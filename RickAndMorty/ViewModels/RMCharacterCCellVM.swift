@@ -7,10 +7,21 @@
 
 import Foundation
 
-final class RMCharacterCCellVM {
+final class RMCharacterCCellVM: Hashable, Equatable {
+    
     public let charName: String
     private let charStatus: RMCharacterStatus
     private let charImageUrl: URL?
+    
+    static func == (lhs: RMCharacterCCellVM, rhs: RMCharacterCCellVM) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(charName)
+        hasher.combine(charStatus)
+        hasher.combine(charImageUrl)
+    }
     
     init(charName: String, charStatus: RMCharacterStatus, charImageUrl: URL?) {
         self.charName = charName
