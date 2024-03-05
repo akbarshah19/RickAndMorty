@@ -175,4 +175,5 @@ extension RMCharacterListViewVM: UIScrollViewDelegate {
             t.invalidate()
         }
     }
+    
 }
