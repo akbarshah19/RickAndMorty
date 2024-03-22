@@ -161,8 +161,8 @@ extension RMCharacterListViewVM: UIScrollViewDelegate {
               let nextUrlString = apiInfo?.next,
               let url = URL(string: nextUrlString)
         else {
-                  return
-              }
+            return
+        }
         
         
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] t in
