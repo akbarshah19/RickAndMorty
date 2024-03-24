@@ -89,6 +89,7 @@ final class RMCharacterListViewVM: NSObject {
                 }
                 
                 strongSelf.chars.append(contentsOf: moreResults)
+                
                 DispatchQueue.main.async {
                     strongSelf.delegate?.didLoadMoreChars(with: indexPathsToAdd)
                     strongSelf.isLoadingMore = false
