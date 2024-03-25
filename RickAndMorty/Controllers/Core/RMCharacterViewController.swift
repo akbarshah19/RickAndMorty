@@ -33,10 +33,9 @@ final class RMCharacterViewController: UIViewController {
 }
 
 extension RMCharacterViewController: RMCharacterListViewDelegate {
-    
     // open detail controller
     func rmCharacterListView(_ characterListView: RMCharacterListView, didSelectCharacter character: RMCharacter) {
-        
+        didSelectCharacter(character)
     }
     
     func didSelectCharacter(_ character: RMCharacter) {
