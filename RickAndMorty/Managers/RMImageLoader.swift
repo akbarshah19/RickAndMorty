@@ -29,7 +29,7 @@ final class RMImageLoader {
                 return
             }
             
-            //caching...
+            //Caching image...
             let value = data as NSData
             self?.imageDataCache.setObject(value, forKey: key)
             
