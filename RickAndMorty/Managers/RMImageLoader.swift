@@ -32,7 +32,6 @@ final class RMImageLoader {
             //Caching image...
             let value = data as NSData
             self?.imageDataCache.setObject(value, forKey: key)
-            
             completion(.success(data))
         }
         task.resume()
