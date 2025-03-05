@@ -7,6 +7,7 @@
 
 import Foundation
 
+///view for single character info
 final class RMCharacterDetailViewVM {
     let character: RMCharacter
     

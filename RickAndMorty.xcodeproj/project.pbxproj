@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,6 @@
 		AD6D9F132B71240100E073AE /* RMGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6D9F122B71240100E073AE /* RMGetAllCharactersResponse.swift */; };
 		AD6D9F152B712A4700E073AE /* RMCharacterListViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6D9F142B712A4700E073AE /* RMCharacterListViewVM.swift */; };
 		AD6D9F172B712A9D00E073AE /* RMCharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6D9F162B712A9D00E073AE /* RMCharacterListView.swift */; };
-		AD6D9F192B713A2500E073AE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6D9F182B713A2500E073AE /* Extensions.swift */; };
 		AD99FEFA2B6D5C97004B0527 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD99FEF92B6D5C97004B0527 /* AppDelegate.swift */; };
 		AD99FEFC2B6D5C97004B0527 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD99FEFB2B6D5C97004B0527 /* SceneDelegate.swift */; };
 		AD99FEFE2B6D5C97004B0527 /* RMTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD99FEFD2B6D5C97004B0527 /* RMTabViewController.swift */; };
@@ -41,7 +40,6 @@
 		AD6D9F122B71240100E073AE /* RMGetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMGetAllCharactersResponse.swift; sourceTree = "<group>"; };
 		AD6D9F142B712A4700E073AE /* RMCharacterListViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterListViewVM.swift; sourceTree = "<group>"; };
 		AD6D9F162B712A9D00E073AE /* RMCharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterListView.swift; sourceTree = "<group>"; };
-		AD6D9F182B713A2500E073AE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		AD99FEF62B6D5C97004B0527 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD99FEF92B6D5C97004B0527 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD99FEFB2B6D5C97004B0527 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +63,10 @@
 		ADFDE5FF2B79203900A1259E /* RMCharacterDetailViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterDetailViewVM.swift; sourceTree = "<group>"; };
 		ADFDE6012B79472E00A1259E /* RMFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		ADA20AB22D787563004054C5 /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		AD99FEF32B6D5C97004B0527 /* Frameworks */ = {
@@ -122,6 +124,7 @@
 				AD99FF0F2B6D5EC0004B0527 /* Views */,
 				AD99FF0E2B6D5EBA004B0527 /* Models */,
 				AD99FF0D2B6D5EAE004B0527 /* Controllers */,
+				ADA20AB22D787563004054C5 /* Extensions */,
 			);
 			path = RickAndMorty;
 			sourceTree = "<group>";
@@ -190,7 +193,6 @@
 				AD99FEFB2B6D5C97004B0527 /* SceneDelegate.swift */,
 				AD99FF022B6D5C99004B0527 /* Assets.xcassets */,
 				AD99FF042B6D5C99004B0527 /* LaunchScreen.storyboard */,
-				AD6D9F182B713A2500E073AE /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -229,6 +231,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				ADA20AB22D787563004054C5 /* Extensions */,
 			);
 			name = RickAndMorty;
 			productName = RickAndMorty;
@@ -302,7 +307,6 @@
 				ADC5FDA32BB01D9B000CAED8 /* RMImageLoader.swift in Sources */,
 				AD99FF152B6D5F71004B0527 /* RMLocation.swift in Sources */,
 				ADAE664B2B6E63EB008BC013 /* RMEndpoint.swift in Sources */,
-				AD6D9F192B713A2500E073AE /* Extensions.swift in Sources */,
 				AD99FF172B6D5F7B004B0527 /* RMCharacter.swift in Sources */,
 				ADAE66492B6E6370008BC013 /* RMRequest.swift in Sources */,
 				AD6D9F132B71240100E073AE /* RMGetAllCharactersResponse.swift in Sources */,

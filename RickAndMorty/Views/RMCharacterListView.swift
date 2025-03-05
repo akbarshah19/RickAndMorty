@@ -16,7 +16,6 @@ protocol RMCharacterListViewDelegate: AnyObject {
 final class RMCharacterListView: UIView {
     
     public weak var delegate: RMCharacterListViewDelegate?
-    
     private let viewModel = RMCharacterListViewVM()
     
     private let spinner: UIActivityIndicatorView = {
